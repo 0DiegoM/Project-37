@@ -18,7 +18,7 @@ function modelLoaded() {
     status = true;
 }
 
-function gotResult(error, results) {
+function gotResults(error, results) {
     if (error) {
         console.log(error);
     }
@@ -39,15 +39,21 @@ text(objects[i].label + " "+ percent+ "%", objects[i].x + 15, objects[i].y + 15)
 noFill();
 stroke('red');
 rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
-if(objects[i].label == document.getElementById("objName").label) {
 
-} else {
-
-}
 }
 }
 }
 
 function start() {
-    
+    if(objects[i].label == document.getElementById("objName").label) {
+        video.stop();
+        objectDetector.detect(gotResults);
+        document.getElementById("status").innerHTML = "Se encontro "+objects[i].label;
+        synth = window.speechSynthesis;
+        utterThis = SpeechSynthesisUtterance(objects[i].label+" encontrado.");
+        synth.speak(utterThis);
+        } else {
+        document.getElementById("status").innerHTML = document.getElementById("objName").label + " no fue encontrado";
+        }
+
 }
