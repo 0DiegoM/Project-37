@@ -1,46 +1,41 @@
-body {
-    background-size: cover;
-    
-}
-
-
 .heading {
     width: 100%;
-font-size: large;
-margin: 0%;
+    text-align: left;
 }
 
-
-.button {
-    font-size: x-large;
+.heading h3 {
+    display: inline;
 }
 
-
-canvas {
-    box-shadow: 5px 5px 5px grey;
+.heading button {
+    float: right;
+    border: 1px solid white;
 }
 
-footer {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    background-color: grey;
-    color: #fff;
-    bottom: 0;
-    position: fixed;
-    width: 100%;
+#start,
+#status,
+#restart {
+    font-size: 22px;
 }
 
-canvas {
-    box-shadow: 10px 10px 10px grey;
-    border-radius: 15px;
-    position: center;
+.modal-dialog {
+    width: 70%;
+}
+
+.modal-body {
+    text-align: left;
+    font-size: 20px;
 }
 
 h4 {
-background: red;
+    background-color: grey;
+    color: white;
+    line-height: 2;
+    
 }
 
-input {
-    width: 400px;
+canvas {
+    border: 3px solid white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px white;
 }

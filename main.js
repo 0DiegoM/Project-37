@@ -1,60 +1,86 @@
-objects = [];
-status = "";
+pad2 = 10, pad1 = 10;
 
+padX = 10, pad1Height = 110;
+pad2Y = 685, pad2Height = 70;
 
+score1 = 0, score2 = 0;
+pad1Y = 0;
+
+playerScore = 0;
+
+pcscore = 0;
+
+ball = {
+    x: 350 / 2,
+
+    y: 480 / 2,
+
+    r: 20,
+
+    dx: 3,
+
+    dy: 3
+}
+
+rightWristY = 0;
+rightWristX = 0;
+scoreRightWrist = 0;
+
+game_status = "";
+
+function preload() {
+    ball_touch_pad = loadSound("ball_touch_paddel.wav");
+    missed = loadSound("missed.wav");
+}
 
 function setup() {
-    canvas = createCanvas(380, 380);
-    canvas.center();
+    canvas = createCanvas(700, 600);
+    canvas.parent('canvas');
+
     video = createCapture(VIDEO);
-    video.size(380, 380);
-    objectDetector = ml5.objectDetector('cocossd', modelLoaded);
-    document.getElementById("status").innerHTML = "Status : Detectando objetos";
+    video.size(700, 600);
     video.hide();
+
+    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on('pose', gotPoses);
 }
 
 function modelLoaded() {
-    console.log("¡Modelo cargado!")
-    status = true;
+    console.log('PoseNet se ha inicializado');
 }
 
-function gotResults(error, results) {
-    if (error) {
-        console.log(error);
+function gotPoses(results) {
+    if (results.length > 0) {
+
+        rightWristY = results[0].pose.rightWrist.y;
+        rightWristX = results[0].pose.rightWrist.x;
+        scoreRightWrist = results[0].pose.keypoints[10].score;
+        console.log(scoreRightWrist);
     }
-    console.log(results);
-    objects = results;
+}
+
+function startGame() {
+    game_status = "start";
+    document.getElementById("status").innerHTML = "El juego está cargado";
 }
 
 function draw() {
-    image(video, 0, 0, 380, 380);
-if(status != "") {
-objectDetector.detect(video, gotResults);
+    if (game_status == "start") {
+        background(0);
+        image(video, 0, 0, 700, 600);
 
-for(i = 0; i < objects.length; i++) {
-document.getElementById("status").innerHTML = "Status - Objeto Detectado";
-fill('red');
-percent = floor(objects[i].confidence * 100);
-text(objects[i].label + " "+ percent+ "%", objects[i].x + 15, objects[i].y + 15);
-noFill();
-stroke('red');
-rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
-if(objects[i].label == objName) {
-    video.stop();
-    objectDetector.detect(gotResults);
-    document.getElementById("objs").innerHTML = "Se encontro "+ objName;
-    synth = window.speechSynthesis;
-    utterThis = SpeechSynthesisUtterance(objName + " encontrado.");
-    synth.speak(utterThis);
-    } else {
-    document.getElementById("objs").innerHTML = objName + " no fue encontrado";
+        fill("black");
+        stroke("black");
+        rect(680, 0, 20, 700);
+
+        fill("black");
+        stroke("black");
+        rect(0, 0, 20, 700);
+
+        if (scoreRightWrist > 0.2) {
+            fill("red");
+            stroke("red");
+            circle(rightWristX, rightWristY, 30);
+        }
     }
-}
-}
-}
-
-function start() {
-    objectDetector = ml5.objectDetector('cocossd', modelLoaded);
-    document.getElementById("status").innerHTML = "Status - Detecting Objects";
-    objName = document.getElementById("objName").value;
 }

@@ -1,42 +1,75 @@
+<!DOCTYPE html>
 <html>
+
 <head>
+    <title>PING PONG AI</title>
 
-	<title>AI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript"
+        src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=MOMulGDCzuyrtfDnJP0zteWCDW90UGPC_WUemkc4gEM1yMUxb4gyVeFnV4AcDC4wecvNcrJ7CtvQT8yCH-vI2BFamGkkKr8sXcWw55Y2ig4"
+        charset="UTF-8"></script>
+    <link rel="stylesheet" crossorigin="anonymous"
+        href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9ieWp1cy1zbWFoLmdpdGh1Yi5pby9Tb2x1Y2lvbi1kZWwtcHJveWVjdG9fQzEzOC1DMTQzLw" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
-
-  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"> </script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
 </head>
 
-<body background="istockphoto-1356030391-170667a.jpg">
-<center>
-<h2 class="btn btn-warning heading"> Buscador de objetos IA  </h2>
-<h4 class="heading"> El nombre que escribas de entrada debera corresponder con los nombres presentes en el modelo CoCo, solo asi podra detectar los objetos </h4>
-<br>
-<input id="objName" type="text" placeholder="Escribe aqui el nombre del objeto">
-<Br>
+<body background="background1.jpg">
+    <center>
 
-<h6 class="btn btn-success" onclick="start();"> Start </h6>
-<br>
-<br>
-<h3 class="btn btn-warning" id="objs"></h3>
-<br>
-<h3 class="btn btn-danger" id="status"></h3>
+        <div class="btn btn-warning heading">
+            <h3>PING PONG IA</h3>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#myModal">Instrucciones</button>
+        </div>
 
-<footer> 
-<p> Desarrollado por la empresa de DiegoElPro  </p>  
-</footer>
-</center>
+        <br><br>
+        <button class="btn btn-success" onclick="startGame()" id="start">Jugar</button>
+        <br><br>
+        <h3 id="status" class="btn btn-default"></h3>
+        <br><br>
+        <div id="canvas"></div>
+        <br><br>
+        <button onclick="restart()" class="btn btn-danger" id="restart">Reinicio</button>
+        <br><br>
 
-<script src="main.js"></script>
+        <h4>Desarrollado por: El Equipo Bien Pro De DiegoM</h4>
 
+        <div id="myModal" class="modal fade ">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h3>Instrucciones</h#>
+                    </div>
+
+                    <div class="modal-body">
+                        <ol>
+                            <li>Primero, manten la pantalla de tu computadora portátil recta</li>
+
+                            <li>Aléjate aproximadamente un metro de tu computadora</li>
+
+                            <li>Mueve tu muñeca derecha de forma ascendente y descendente, debería aparecer un punto
+                                rojo en tu muñeca derecha</li>
+
+                            <li>Ahora haz clic en el botón para jugar, y de nuevo aléjate aproximadamente un metro de tu
+                                computadora</li>
+<li>La paleta roja es tu paleta, se moverá según el movimiento de tu muñeca derecha</li>
+        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <script src="main.js"></script>
 </body>
 
 </html>
